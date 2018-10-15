@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }} {% else %} Products {% endif %}
+{% endblock %}
+
+{% block content %}
+{% include 'shop/specialnavbar.html' %}
+<div class="container" >
+  {% include 'shop/filters.html' %}
+  <br>
+  <div class="row" style="margin-top: 10%" >
+
+    <div class="col-sm-12 blog-main" >
+
+      <div class="blog-post" >
+        <div class="row">
+
+          {% for product in products %}
+          <div class="col-md-4"  >
+            <div class="thumbnail" style="border:none; background-color:#f7f2f2">
+              <a href="{{ product.get_absolute_url }}">
+                <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.JPG' %} {% endif %}" alt="..." style="z-index:-1;height: 180px; width: 280px;border-radius: 16px;">
+              </a>
+
+              <h5 class="text-center" >
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+              </h5>
+              <p class="text-center"><b>Rs. {{ product.price }}</b></p>
+
+            </div>
+          </div>
+
+
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  {% endblock %}

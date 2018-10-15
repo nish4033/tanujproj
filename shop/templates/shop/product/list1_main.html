@@ -1,0 +1,52 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+   {% if category %}{{ category.name }} {% else %} Products {% endif %}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+
+<iframe style="width:900px; height:500px;margin-top:60px;margin-left:140px" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe>
+
+
+
+<div class="container" style="overflow-x: auto;margin-top:100px">
+    <div class="row flex-row flex-nowrap">
+
+{% for product in products %}
+<div class="col-3">
+
+
+<div class="card " style="width: 28rem">
+  <div class="card-body">
+  <div class="thumbnail">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.JPG' %} {% endif %}" alt="..." style="z-index:-1;height: 180px; width: 280px;border: 1px solid #ddd;border-radius: 16px;  padding: 10px;">
+                </a>
+
+                    <h5 class="text-left" >
+                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    </h5>
+                    <p class="text-left"><b>Rs. {{ product.price }}</b></p>
+
+  </div>
+  </div>
+</div>
+
+</div>
+
+{% endfor %}
+
+
+</div>
+
+</div>
+
+<br><br><br><br><br><br>
+ {% endblock %}
